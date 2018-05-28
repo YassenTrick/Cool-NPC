@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace NPC\tasks;
 
 use pocketmine\entity\Entity;
+use pocketmine\math\Vector3;
+use pocketmine\level\particle\FlameParticle;
 use pocketmine\scheduler\PluginTask;
 
 use NPC\{
 	Main, NPCHuman
 };
 
-class NPCTask extends PluginTask{
+class ParticleTask extends PluginTask{
 
 	/** @var Main $plugin */
 	/** @var Entity $entity */
@@ -25,11 +27,18 @@ class NPCTask extends PluginTask{
 
 	public function onRun(int $tick){
 		$entity = $this->entity;
-		
+
 		if($entity instanceof NPCHuman){
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new SneakTask($this->plugin, $entity), 50);
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new UnSneakTask($this->plugin, $entity), 50);
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new ParticleTask($this->plugin, $entity), 20);
+			$level = $entity->getLevel();
+
+			if($entity->isAlive()){
+				for($yaw = 0; $yaw <= 10; $yaw += 0.5){
+					$x = 0.5 * sin($yaw);
+					$y = 0.5;
+					$z = 0.5 * cos($yaw);
+					$level->addParticle(new FlameParticle($entity->add($x, $y, $z)));
+				}
+			}
 		}
 	}
 }

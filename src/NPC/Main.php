@@ -38,7 +38,7 @@ class Main extends PluginBase implements Listener{
 		$entity = $e->getEntity();
 
 		if($entity instanceof NPCHuman){
-			$this->getServer()->getScheduler()->scheduleRepeatingTask(new NPCTask($this, $entity), 60 * 20);
+			$this->getServer()->getScheduler()->scheduleRepeatingTask(new NPCTask($this, $entity), 200);
 		}
 	}
 
