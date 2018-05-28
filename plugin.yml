@@ -2,7 +2,7 @@ name: NPC
 version: 1.0.0
 api: 3.0.0-ALPHA12
 main: NPC\Main
-author: xXNiceYT
+author: xXNiceYT, Blaze
 
 commands:
   npc:

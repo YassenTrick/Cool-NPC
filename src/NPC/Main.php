@@ -6,15 +6,20 @@ namespace NPC;
 
 use pocketmine\Player;
 use pocketmine\entity\Entity;
+use pocketmine\event\entity\EntitySpawnEvent;
+use pocketmine\event\Listener;
 use pocketmine\command\{
 	Command, CommandSender
 };
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 
-class Main extends PluginBase{
+use NPC\tasks\NPCTask;
+
+class Main extends PluginBase implements Listener{
 
 	public function onEnable(){
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		Entity::registerEntity(NPCHuman::class, true);
 	}
 
@@ -27,6 +32,14 @@ class Main extends PluginBase{
 		$this->spawnNPC($sender, $args[0]);
 		$sender->sendMessage(TextFormat::GREEN . "Spawned NPC: " . $args[0]);
 		return true;
+	}
+
+	public function onEntitySpawn(EntitySpawnEvent $e){
+		$entity = $e->getEntity();
+
+		if($entity instanceof NPCHuman){
+			$this->getServer()->getScheduler()->scheduleRepeatingTask(new NPCTask($this, $entity), 60 * 20);
+		}
 	}
 
 	public function spawnNPC(Player $player, string $name){
