@@ -25,11 +25,18 @@ class NPCTask extends PluginTask{
 
 	public function onRun(int $tick){
 		$entity = $this->entity;
+		$config = new Config($this->plugin->getDataFolder() . "config.yml", Config::YAML);
 		
 		if($entity instanceof NPCHuman){
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new SneakTask($this->plugin, $entity), 50);
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new UnSneakTask($this->plugin, $entity), 50);
-			$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new ParticleTask($this->plugin, $entity), 20);
+			if($config->get("sneak")){
+				$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new SneakTask($this->plugin, $entity), 50);
+			}
+			if($config->get("unsneak")){
+				$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new UnSneakTask($this->plugin, $entity), 50);
+			}
+			if($config->get("particles")){
+				$this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new ParticleTask($this->plugin, $entity), 20);
+			}
 		}
 	}
 }
