@@ -87,7 +87,7 @@ class Main extends PluginBase implements Listener{
 							return;
 						}
 					}
-					if($msg == "2 + 2 - 1"){
+					if($msg == $prefix . " 2 + 2 - 1"){
 						$p->sendMessage(TextFormat::GREEN . "[Big Shaq]" . TextFormat::BLUE . "Two plus two is four, minus one that's three quick maths.");
 						return;
 					}
