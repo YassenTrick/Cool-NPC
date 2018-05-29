@@ -1,0 +1,13 @@
+---
+##############################
+# Configuration for Cool-NPC #
+# Add bots to your MC server #
+##############################
+
+# Make the bots sneak
+sneak: true
+# Make the bots un-sneak
+unsneak: true
+# Add circle particles to your bots
+particles: true
+...
