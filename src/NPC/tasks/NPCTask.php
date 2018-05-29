@@ -6,6 +6,7 @@ namespace NPC\tasks;
 
 use pocketmine\entity\Entity;
 use pocketmine\scheduler\PluginTask;
+use pocketmine\utils\Config;
 
 use NPC\{
 	Main, NPCHuman
