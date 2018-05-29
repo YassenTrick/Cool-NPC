@@ -27,6 +27,8 @@ class Main extends PluginBase implements Listener{
 		
 		$this->getLogger()->info("Enabled!");
 		
+		//Config stuff
+		$this->saveResource("config.yml");
 		$config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		if($config->get("sneak")){
 			$this->getLogger()->info("Enabled sneaking");
@@ -40,7 +42,6 @@ class Main extends PluginBase implements Listener{
 		if($config->get("maths")){
 			$this->getLogger()->info("Enabled maths");
 		}
-		$this->saveResource("config.yml");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		Entity::registerEntity(NPCHuman::class, true);
 	}
