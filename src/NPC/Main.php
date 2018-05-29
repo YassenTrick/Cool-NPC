@@ -55,6 +55,8 @@ class Main extends PluginBase implements Listener{
 		return true;
 	}
 	
+	//Quick maths
+	//Credits to FreeGamingHere
 	public function onChat(PlayerChatEvent $event){
 		$config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		if($config->get("maths")){
