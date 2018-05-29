@@ -12,9 +12,9 @@ use pocketmine\event\Listener;
 use pocketmine\command\{
 	Command, CommandSender
 };
-use pocketmine\utils\Config;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
+use pocketmine\utils\Config;
 
 use NPC\tasks\NPCTask;
 
