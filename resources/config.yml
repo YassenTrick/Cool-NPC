@@ -10,4 +10,8 @@ sneak: true
 unsneak: true
 # Add circle particles to your bots
 particles: true
+# Make the bots answer when someones uses the prefix bellow
+maths: true
+# Add circle particles to your bots
+prefix: "coolbot"
 ...
