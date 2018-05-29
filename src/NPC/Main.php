@@ -25,23 +25,24 @@ class Main extends PluginBase implements Listener{
 			@mkdir($this->getDataFolder());
 		}
 		
-		$this->getLogger()->info("Enabled!");
-		
 		//Config stuff
 		$this->saveResource("config.yml");
 		$config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		if($config->get("sneak")){
-			$this->getLogger()->info("Enabled sneaking");
+			$this->getLogger()->info("Enabling sneaking...");
 		}
 		if($config->get("unsneak")){
-			$this->getLogger()->info("Enabled un-sneaking");
+			$this->getLogger()->info("Enabling un-sneaking...");
 		}
 		if($config->get("particles")){
-			$this->getLogger()->info("Enabled particles");
+			$this->getLogger()->info("Enabling particles...");
 		}
 		if($config->get("maths")){
-			$this->getLogger()->info("Enabled maths");
+			$this->getLogger()->info("Enabling maths...");
 		}
+		
+		$this->getLogger()->info("Plugin enabled!");
+		
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		Entity::registerEntity(NPCHuman::class, true);
 	}
