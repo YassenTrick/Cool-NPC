@@ -19,6 +19,11 @@ use NPC\tasks\NPCTask;
 class Main extends PluginBase implements Listener{
 
 	public function onEnable(){
+		if(!is_dir($this->getDataFolder())){
+			@mkdir($this->getDataFolder());
+		}
+		
+		$this->saveResource("config.yml");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		Entity::registerEntity(NPCHuman::class, true);
 	}
